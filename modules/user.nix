@@ -4,6 +4,8 @@
 
   # Keys and tokens go to /home/abeb-nix via copy-settings.sh
   # (~/.ssh, ~/.gnupg, ~/.git-credentials, ~/.config/gh). Not stored in this repo.
+  # GNOME's agent turns on with the desktop modules. Only one agent is allowed.
+  services.gnome.gcr-ssh-agent.enable = false;
   programs.ssh = {
     startAgent = true;
     askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";

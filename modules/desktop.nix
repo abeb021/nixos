@@ -10,6 +10,13 @@
   programs.hyprland.enable = true;
   programs.niri.enable = true;
 
+  programs.dconf.enable = true;
+
+  # niri also turns this on; keep it explicit for Hyprland/SDDM secrets.
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -29,12 +36,32 @@
     nerd-fonts.symbols-only
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "24";
+    # Must be a list — xdg/icons.nix also defines this option as a list.
+    XCURSOR_PATH = [ "${pkgs.bibata-cursors}/share/icons" ];
+    HYPRCURSOR_THEME = "rose-pine-hyprcursor";
+    HYPRCURSOR_SIZE = "24";
+  };
+  environment.pathsToLink = [ "/share/icons" ];
+
+  # Hyprland only searches ~/.local/share/icons for hyprcursor themes.
+  system.activationScripts.hyprcursorIcons = ''
+    install -d -o 1000 -g 100 /home/abeb-nix/.local/share/icons
+    ln -sfn ${pkgs.rose-pine-hyprcursor}/share/icons/rose-pine-hyprcursor \
+      /home/abeb-nix/.local/share/icons/rose-pine-hyprcursor
+  '';
 
   environment.systemPackages = with pkgs; [
+    bibata-cursors
+    rose-pine-hyprcursor
+    libsecret
+    seahorse
     quickshell
     kitty
     yazi

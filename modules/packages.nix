@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.git.enable = true;
   programs.neovim = {
@@ -34,7 +34,8 @@
     neovim
     go
     nodejs
-    python3
+    # Pillow is what Tanjun uses to sample wallpaper colors.
+    (python3.withPackages (ps: [ ps.pillow ]))
     gcc
     gnumake
     pkg-config
@@ -49,6 +50,42 @@
     pinentry-qt
     docker-compose
     docker-buildx
+
+    # psmisc killall misses Nix .*-wrapped process names (comm truncated to 15).
+    psmisc
+    (lib.hiPrio (pkgs.writeShellScriptBin "killall" ''
+      set +e
+      real=${pkgs.psmisc}/bin/killall
+      "$real" "$@"
+      status=$?
+      flags=()
+      names=()
+      skip=
+      for arg in "$@"; do
+        if [ -n "$skip" ]; then
+          flags+=("$arg")
+          skip=
+          continue
+        fi
+        case "$arg" in
+          -o|--older-than|-y|--younger-than|-s|--signal)
+            flags+=("$arg")
+            skip=1
+            ;;
+          -*)
+            flags+=("$arg")
+            ;;
+          *)
+            names+=("$arg")
+            ;;
+        esac
+      done
+      for name in "''${names[@]}"; do
+        short="$(printf '%.15s' ".''${name}-wrapped")"
+        "$real" "''${flags[@]}" "$short" 2>/dev/null
+      done
+      exit "$status"
+    ''))
 
     # VPN client. zapret's old unit executed /opt/zapret on the Arch disk;
     # the package is here, the service is not started.
