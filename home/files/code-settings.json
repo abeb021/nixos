@@ -1,0 +1,55 @@
+{
+    "git.autofetch": true,
+    "files.autoSave": "afterDelay",
+    "workbench.iconTheme": "bearded-icons",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'SF Mono', Menlo, Monaco, 'Cascadia Code', monospace",
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'SF Mono', Menlo, Monaco, 'Cascadia Code', monospace",
+    "terminal.integrated.gpuAcceleration": "off",
+    "editor.allowVariableFonts": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+    "explorer.confirmPasteNative": false,
+    "go.toolsManagement.autoUpdate": true,
+    "chat.viewSessions.orientation": "stacked",
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.svg": "default"
+    },
+    "explorer.confirmDelete": false,
+    "git.enableSmartCommit": true,
+    "workbench.colorTheme": "Night Owl",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["<Up>"], "commands": [":resize +2"] },
+        { "before": ["<Down>"], "commands": [":resize -2"] },
+        { "before": ["<Left>"], "commands": [":vertical resize -2"] },
+        { "before": ["<Right>"], "commands": [":vertical resize +2"] }
+    ],
+    "vim.insertModeKeyBindings": [
+        { "before": ["<Up>"], "after": ["<nop>"] },
+        { "before": ["<Down>"], "after": ["<nop>"] },
+        { "before": ["<Left>"], "after": ["<nop>"] },
+        { "before": ["<Right>"], "after": ["<nop>"] }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        { "before": ["<Up>"], "after": ["<nop>"] },
+        { "before": ["<Down>"], "after": ["<nop>"] },
+        { "before": ["<Left>"], "after": ["<nop>"] },
+        { "before": ["<Right>"], "after": ["<nop>"] }
+    ],
+    "vim.useSystemClipboard": true,
+    "vim.handleKeys": {
+        "<CapsLock>": false,
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-S-v>": false
+    },
+    "keyboard.dispatch": "keyCode"
+}

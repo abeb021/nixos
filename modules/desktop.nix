@@ -1,11 +1,25 @@
 # Live session is Hyprland plus Tanjun (Quickshell).
 # Tanjun itself stays the git checkout under ~/.local/share/tanjun.
 # The old waybar / wofi / swaync rice in ~/.config is not this session.
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  simplicity-sddm-theme = pkgs.callPackage ../pkgs/simplicity-sddm-theme.nix { };
+in
 {
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.defaultSession = "hyprland";
+  services.displayManager = {
+    defaultSession = "hyprland";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "simplicity";
+      settings = {
+        Theme = {
+          CursorTheme = "Bibata-Modern-Classic";
+          CursorSize = 24;
+        };
+      };
+    };
+  };
 
   programs.hyprland.enable = true;
   programs.niri.enable = true;
@@ -27,7 +41,14 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
   };
 
   fonts.packages = with pkgs; [
@@ -51,14 +72,20 @@
   environment.pathsToLink = [ "/share/icons" ];
 
   # Hyprland only searches ~/.local/share/icons for hyprcursor themes.
-  system.activationScripts.hyprcursorIcons = ''
-    install -d -o 1000 -g 100 /home/abeb-nix/.local/share/icons
-    ln -sfn ${pkgs.rose-pine-hyprcursor}/share/icons/rose-pine-hyprcursor \
-      /home/abeb-nix/.local/share/icons/rose-pine-hyprcursor
-  '';
+  system.activationScripts.hyprcursorIcons =
+    let
+      user = config.users.users.abeb-nix;
+      home = user.home;
+    in
+    ''
+      install -d -o ${toString user.uid} -g ${toString user.group} ${home}/.local/share/icons
+      ln -sfn ${pkgs.rose-pine-hyprcursor}/share/icons/rose-pine-hyprcursor \
+        ${home}/.local/share/icons/rose-pine-hyprcursor
+    '';
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
+    simplicity-sddm-theme
     rose-pine-hyprcursor
     libsecret
     seahorse

@@ -8,6 +8,7 @@
     ./modules/desktop.nix
     ./modules/user.nix
     ./modules/packages.nix
+    ./modules/home-manager.nix
   ];
 
   system.stateVersion = "26.11";

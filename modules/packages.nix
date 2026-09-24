@@ -14,8 +14,6 @@
   environment.systemPackages = with pkgs; [
     # daily apps
     chromium
-    vscode
-    code-cursor
     discord
     obsidian
     zoom-us
@@ -26,9 +24,9 @@
     vlc
     btop
     htop
+    nautilus
 
     # dev
-    git
     gh
     lazygit
     neovim
