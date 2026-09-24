@@ -6,6 +6,9 @@
     defaultEditor = true;
   };
   programs.firefox.enable = true;
+  # Do not put pkgs.zoom-us in systemPackages. The module wraps Zoom's FHS
+  # jail with the Hyprland portal; the bare package cannot see it.
+  programs.zoom-us.enable = true;
 
   # Amnezia ships its own unit. Enable it the same way the Arch service was enabled.
   systemd.packages = [ pkgs.amnezia-vpn ];
@@ -16,7 +19,6 @@
     chromium
     discord
     obsidian
-    zoom-us
     ayugram-desktop
     postman
     libreoffice

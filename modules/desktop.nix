@@ -31,6 +31,8 @@ in
   security.pam.services.sddm.enableGnomeKeyring = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
+  # PipeWire needs this for low-latency audio (Zoom/mic crackle without it).
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -45,10 +47,18 @@ in
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
     ];
-    config.common.default = [
-      "hyprland"
-      "gtk"
-    ];
+    config = {
+      common.default = [
+        "hyprland"
+        "gtk"
+      ];
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
+      hyprland."org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+      hyprland."org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+    };
   };
 
   fonts.packages = with pkgs; [

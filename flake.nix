@@ -12,7 +12,7 @@
   };
 
   outputs =
-    { self, nixpkgs, zen-browser, ... }@inputs:
+    { self, nixpkgs, ... }@inputs:
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
