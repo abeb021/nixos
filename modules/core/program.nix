@@ -6,6 +6,10 @@
     defaultEditor = true;
   };
   programs.firefox.enable = true;
+  programs.zsh.enable = true;
+  programs.dconf.enable = true;
+  programs.wireshark.enable = true;
+
   # Do not put pkgs.zoom-us in systemPackages. The module wraps Zoom's FHS
   # jail with the Hyprland portal; the bare package cannot see it.
   programs.zoom-us.enable = true;

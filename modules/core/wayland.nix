@@ -1,10 +1,7 @@
 # Live session is Hyprland plus Tanjun (Quickshell).
 # Tanjun itself stays the git checkout under ~/.local/share/tanjun.
 # The old waybar / wofi / swaync rice in ~/.config is not this session.
-{ pkgs, config, ... }:
-let
-  simplicity-sddm-theme = pkgs.callPackage ../pkgs/simplicity-sddm-theme.nix { };
-in
+{ pkgs, config, username, ... }:
 {
   services.displayManager = {
     defaultSession = "hyprland";
@@ -23,23 +20,6 @@ in
 
   programs.hyprland.enable = true;
   programs.niri.enable = true;
-
-  programs.dconf.enable = true;
-
-  # niri also turns this on; keep it explicit for Hyprland/SDDM secrets.
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-
-  # PipeWire needs this for low-latency audio (Zoom/mic crackle without it).
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 
   xdg.portal = {
     enable = true;
@@ -61,15 +41,6 @@ in
     };
   };
 
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.symbols-only
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-  ];
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     XCURSOR_THEME = "Bibata-Modern-Classic";
@@ -84,7 +55,7 @@ in
   # Hyprland only searches ~/.local/share/icons for hyprcursor themes.
   system.activationScripts.hyprcursorIcons =
     let
-      user = config.users.users.abeb-nix;
+      user = config.users.users.${username};
       home = user.home;
     in
     ''

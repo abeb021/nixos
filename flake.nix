@@ -13,14 +13,20 @@
 
   outputs =
     { self, nixpkgs, ... }@inputs:
+    let
+      username = "abeb-nix";
+      system = "x86_64-linux";
+    in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./hosts/nixos ];
+          specialArgs = {
+            host = "nixos";
+            inherit self inputs username;
+          };
         };
-        modules = [
-          ./configuration.nix
-        ];
       };
     };
 }

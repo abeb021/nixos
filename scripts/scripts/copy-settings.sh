@@ -5,13 +5,13 @@
 # Mounts arch (and optional home partition) when needed, then copies dotfiles.
 #
 # Live NixOS home on root (typical after migration):
-#   sudo bash /home/abeb-nix/nixos/copy-settings.sh
+#   sudo bash /home/abeb-nix/nixos/scripts/scripts/copy-settings.sh
 #
 # Arch home lives on p5 (label home), not under the arch root /home:
 #   script mounts both partitions automatically when run as root
 #
 # Kitty / Hypr only (no full tree):
-#   sudo ONLY=kitty,hypr bash /home/abeb-nix/nixos/copy-settings.sh
+#   sudo ONLY=kitty,hypr bash /home/abeb-nix/nixos/scripts/scripts/copy-settings.sh
 set -euo pipefail
 
 if [[ "$(id -u)" -ne 0 ]]; then
@@ -109,7 +109,7 @@ copy_dirs=(
   .config/gh
   .config/AmneziaVPN.ORG .config/wireshark
 )
-# GTK / XDG user dirs: Home Manager (nixos/home/gtk.nix). Do not copy from Arch.
+# GTK / XDG user dirs: Home Manager (modules/home/gtk.nix). Do not copy from Arch.
 
 # Live Hypr config comes from Tanjun (~/.local/share/tanjun); copy wallpapers/assets only.
 copy_hypr_assets() {
@@ -121,8 +121,9 @@ copy_hypr_assets() {
     fi
   done
 }
+# .zshrc: Home Manager (modules/home/zsh). Only the p10k theme file is copied.
 copy_files=(
-  .zshrc .p10k.zsh .gitconfig .git-credentials .npmrc
+  .p10k.zsh .gitconfig .git-credentials .npmrc
   .config/mimeapps.list
   .kube/config
 )
@@ -136,7 +137,7 @@ if [[ -n "$ONLY" ]]; then
       kitty) copy_dirs+=(".config/kitty") ;;
       hypr) ;;
       tanjun) copy_dirs+=(".config/tanjun") ;;
-      zsh) copy_files+=(".zshrc" ".p10k.zsh") ;;
+      zsh) copy_files+=(".p10k.zsh") ;;
       *) echo "unknown ONLY=$part (kitty,hypr,tanjun,zsh)" >&2; exit 1 ;;
     esac
   done
@@ -174,7 +175,7 @@ if [[ -n "$ONLY" ]]; then
   exit 0
 fi
 
-# VS Code / Cursor: managed by Home Manager (nixos/home/). Refresh JSON there from Arch if needed.
+# VS Code / Cursor: managed by Home Manager (modules/home/). Refresh JSON there from Arch if needed.
 
 install -d -o 1000 -g 100 "$DEST/.local/share" "$DEST/.config"
 # sudo resets HOME to /root; default to the live user checkout.
