@@ -32,7 +32,7 @@
             '+r:|[._-]=* r:|=*' \
             '+l:|=*'
         zstyle ':completion:*' menu no
-        zstyle ':completion:*' group-name ''''
+        zstyle ':completion:*' group-name '''
         zstyle ':completion:*' format '%B--- %d ---%b'
         zstyle ':completion:*' verbose true
         zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
