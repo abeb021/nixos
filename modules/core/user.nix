@@ -26,7 +26,7 @@
   # Installer account. uid 1000 matches the existing home directory.
   users.users.${username} = {
     isNormalUser = true;
-    uid = 1000;
+    uid = 1001;
     description = username;
     shell = pkgs.zsh;
     extraGroups = [

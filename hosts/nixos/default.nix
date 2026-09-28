@@ -14,4 +14,6 @@
   ];
 
   services.upower.enable = true;
+
+   zramSwap.enable = true;
 }
