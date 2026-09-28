@@ -1,5 +1,5 @@
 # Libadwaita (Nautilus, etc.) on Hyprland: dark scheme, icons, XDG folders.
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   dconf.settings = {
     "org/gnome/desktop/interface" = {
@@ -41,6 +41,10 @@
   home.sessionVariables = {
     ADW_DISABLE_PORTAL = "1";
     GTK_THEME = "Adwaita-dark";
+    GIO_EXTRA_MODULES = lib.concatStringsSep ":" [
+      "${pkgs.gvfs}/lib/gio/modules"
+      "${pkgs.dconf}/lib/gio/modules"
+    ];
   };
 
   xdg.userDirs = {
