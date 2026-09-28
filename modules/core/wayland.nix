@@ -21,6 +21,8 @@
   programs.hyprland.enable = true;
   programs.niri.enable = true;
 
+  services.gvfs.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [

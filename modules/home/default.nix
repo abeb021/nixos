@@ -10,6 +10,7 @@
   imports = [
     ./editors.nix
     ./gtk.nix
+    ./gvfs-session.nix
     ./zen.nix
     ./zsh
     ./tanjun.nix
