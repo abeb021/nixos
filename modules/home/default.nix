@@ -1,8 +1,7 @@
 # User session. System packages stay in modules/core/program.nix.
 #
-# Tanjun (Quickshell) stays a git checkout under ~/.local/share/tanjun with
-# ~/.config/quickshell → shell/ — same as docs/install.md. Do not fold the
-# shell tree into Home Manager; scripts/scripts/copy-settings.sh owns those links.
+# Tanjun: programs.tanjun in modules/home/tanjun.nix (flake input path:../Programming/Tanjun-shell).
+# copy-settings.sh still creates the same symlinks once when migrating from Arch.
 #
 # Secrets (~/.ssh, ~/.gnupg, ~/.git-credentials, ~/.config/gh) are copied once
 # from Arch and never committed here.
@@ -13,6 +12,8 @@
     ./gtk.nix
     ./zen.nix
     ./zsh
+    ./tanjun.nix
+    ./zoom.nix
     ../../scripts/scripts.nix
   ];
 }

@@ -105,7 +105,7 @@ Secrets and a few live trees are copied once by `scripts/scripts/copy-settings.s
 - `~/.p10k.zsh` (the prompt theme; Home Manager only sources it)
 - Kitty, nvim, Tanjun, and Hyprland wallpaper assets
 
-Tanjun stays a git checkout. Home Manager does not manage `~/.config/hypr` or the Quickshell tree.
+Tanjun stays a git checkout under `~/Programming/Tanjun-shell`. Home Manager (`modules/home/tanjun.nix`) owns the symlinks and the small Hyprland `hyprland.lua` stub; the rice and QML tree stay in that repo.
 
 Run the copy only when you still have the Arch disk:
 

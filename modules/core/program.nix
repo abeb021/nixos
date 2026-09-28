@@ -12,6 +12,7 @@
 
   # Do not put pkgs.zoom-us in systemPackages. The module wraps Zoom's FHS
   # jail with the Hyprland portal; the bare package cannot see it.
+  # Hyprland rendering fixes live in modules/home/zoom.nix.
   programs.zoom-us.enable = true;
 
   # Amnezia ships its own unit. Enable it the same way the Arch service was enabled.

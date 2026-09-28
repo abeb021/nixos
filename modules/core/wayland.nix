@@ -38,6 +38,7 @@
       ];
       hyprland."org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
       hyprland."org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+      hyprland."org.freedesktop.impl.portal.Request" = [ "hyprland" ];
     };
   };
 
