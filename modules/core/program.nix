@@ -31,7 +31,9 @@
     vlc
     btop
     htop
+    fastfetch
     nautilus
+    efibootmgr
 
     # dev
     gh

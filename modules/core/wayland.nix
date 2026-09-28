@@ -3,13 +3,21 @@
 # The old waybar / wofi / swaync rice in ~/.config is not this session.
 { pkgs, config, username, ... }:
 {
+  # SDDM greeter on X11; session is still Hyprland (Wayland). Wayland greeter often has no mouse cursor.
+  services.xserver.enable = true;
+
   services.displayManager = {
     defaultSession = "hyprland";
     sddm = {
       enable = true;
-      wayland.enable = true;
+      wayland.enable = false;
+      extraPackages = with pkgs; [ bibata-cursors ];
       theme = "simplicity";
       settings = {
+        General = {
+          GreeterEnvironment =
+            "XCURSOR_THEME=Bibata-Modern-Classic,XCURSOR_SIZE=24,XCURSOR_PATH=${pkgs.bibata-cursors}/share/icons";
+        };
         Theme = {
           CursorTheme = "Bibata-Modern-Classic";
           CursorSize = 24;
