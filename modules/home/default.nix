@@ -13,6 +13,7 @@
     ./zen.nix
     ./zsh
     ./tanjun.nix
+    ./fetch.nix
     ./zoom.nix
     ../../scripts/scripts.nix
   ];

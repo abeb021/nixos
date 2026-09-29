@@ -54,6 +54,7 @@
     wget
     openssh
     nano
+    file
     pinentry-qt
     docker-compose
     docker-buildx

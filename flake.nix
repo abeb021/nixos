@@ -13,6 +13,10 @@
       url = "github:abeb021/Tanjun-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fetch = {
+      url = "github:areofyl/fetch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
