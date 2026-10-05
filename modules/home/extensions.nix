@@ -12,6 +12,10 @@ let
     jnoortheen
     esbenp
     ritwickdey
+    ms-toolsai
+    #haskell ts
+    haskell
+    justusadam 
     ;
 
   beardedTheme = extensionFromVscodeMarketplace {
@@ -27,6 +31,14 @@ let
     version = "1.22.0";
     sha256 = "1aaxbrbss3ck9pab3fz55xkkwm1qc1dgq6aypfh7fl2qakfv0r0f";
   };
+
+  magicRacket = extensionFromVscodeMarketplace {
+    publisher = "evzen-wybitul";
+    name = "magic-racket";
+    version = "0.8.0";
+    sha256 = "sha256-yWmJFLXktsJDEDwHO8ZCXQBTw8j5bOv6TXEOO/V8mZs="; 
+  };
+
 in
 {
   editorExtensions = [
@@ -42,5 +54,9 @@ in
     jnoortheen.nix-ide
     esbenp.prettier-vscode
     ritwickdey.liveserver
+    magicRacket
+    ms-toolsai.jupyter
+    haskell.haskell
+    justusadam.language-haskell
   ];
 }

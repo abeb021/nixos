@@ -15,6 +15,13 @@
   # Hyprland rendering fixes live in modules/home/zoom.nix.
   programs.zoom-us.enable = true;
 
+  programs.nix-ld.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true; # Использует быстрое кэширование окружения
+  };
+
+
   # Amnezia ships its own unit. Enable it the same way the Arch service was enabled.
   systemd.packages = [ pkgs.amnezia-vpn ];
   systemd.services.AmneziaVPN.wantedBy = [ "multi-user.target" ];
@@ -42,7 +49,8 @@
     go
     nodejs
     # Pillow is what Tanjun uses to sample wallpaper colors.
-    (python3.withPackages (ps: [ ps.pillow ]))
+    (python3.withPackages (ps: with ps; [ pillow ipykernel jupyter pip requests
+    beautifulsoup4]))
     gcc
     gnumake
     pkg-config
@@ -58,6 +66,15 @@
     pinentry-qt
     docker-compose
     docker-buildx
+    cabal-install
+    haskell-language-server
+
+    # GHC with specific libraries pre-bundled
+    (ghc.withPackages (hsPkgs: with hsPkgs; [
+    turtle
+    aeson
+    text
+    ]))
 
     # psmisc killall misses Nix .*-wrapped process names (comm truncated to 15).
     psmisc

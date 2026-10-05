@@ -90,6 +90,7 @@
     hyprpaper
     hyprsunset
     hyprshot
+    hypridle
     mpvpaper
     cliphist
     wl-clipboard
