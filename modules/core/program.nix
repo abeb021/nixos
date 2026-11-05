@@ -41,6 +41,9 @@
     fastfetch
     nautilus
     efibootmgr
+    file-roller
+    unzip
+    racket
 
     # dev
     gh

@@ -7,6 +7,10 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    completionInit = ''
+      autoload -U compinit && compinit -u
+    '';
+
     history = {
       size = 10000;
       save = 10000;
@@ -26,7 +30,8 @@
         fi
       '')
 
-      (lib.mkOrder 550 ''
+      # FIX 3: Placed your custom settings cleanly under initContent
+      ''
         zstyle ':completion:*' matcher-list \
             'm:{[:lower:]}={[:upper:]}' \
             '+r:|[._-]=* r:|=*' \
@@ -36,9 +41,7 @@
         zstyle ':completion:*' format '%B--- %d ---%b'
         zstyle ':completion:*' verbose true
         zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
-      '')
 
-      ''
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

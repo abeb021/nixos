@@ -11,6 +11,7 @@
     ./editors.nix
     ./gtk.nix
     ./zen.nix
+    ./firefox.nix
     ./zsh
     ./tanjun.nix
     ./fetch.nix
