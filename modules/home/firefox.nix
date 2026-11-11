@@ -11,71 +11,113 @@
         "sidebar.animation.expand-on-hover.duration-ms" = 0;
       };
 
+      # Styles the browser UI shell
       userChrome = ''
-        /* 1. Global Core UI Variables Override */
         :root {
-          /* Enforce sharp square edges everywhere */
-          --tab-border-radius: 0px !important;
-          --arrowpanel-border-radius: 0px !important;
-          --toolbarbutton-border-radius: 0px !important;
-
-          /* Shrink Tab Heights */
-          --tab-min-height: 24px !important;
-
-          /* Squeeze Toolbar Spacing (Density) */
-          --toolbarbutton-inner-padding: 2px !important;
-          --urlbar-min-height: 24px !important;
-          --urlbar-container-height: 26px !important;
+          --ui-font: "JetBrainsMono Nerd Font", monospace !important;
         }
 
-        /* 2. Micro Toolbar & Navbar Adjustments */
+        * {
+          font-family: var(--ui-font) !important;
+        }
+
+        *,
+        *::before,
+        *::after {
+          border-radius: 0 !important;
+        }
+
+        .tabbrowser-tab,
+        .tab-background,
+        .tab-content,
+        .tab-stack,
+        .tab-label,
+        .tab-icon-stack {
+          border-radius: 0 !important;
+        }
+
+        .tabbrowser-tab[selected="true"] .tab-background {
+          border-radius: 0 !important;
+        }
+
+        #urlbar,
+        #urlbar-background,
+        #urlbar-input-container,
+        #searchbar,
+        .searchbar-textbox {
+          border-radius: 0 !important;
+        }
+
+        menupopup,
+        panel,
+        .panel-arrowcontent,
+        .popup-internal-box,
+        #appMenu-popup,
+        #unified-extensions-panel,
+        toolbarbutton,
+        .menuitem,
+        .subviewbutton {
+          border-radius: 0 !important;
+        } Menupopup > menu,
+        menupopup > menuitem {
+          border-radius: 0 !important;
+        }
+
+        button,
+        toolbarbutton,
+        #nav-bar toolbarbutton {
+          border-radius: 0 !important;
+        }
+
+        findbar,
+        .findbar-container,
+        .findbar-textbox {
+          border-radius: 0 !important;
+        }
+
+        #sidebar-box,
+        #sidebar-header,
+        #sidebar-search-container,
+        .sidebar-panel {
+          border-radius: 0 !important;
+        }
+
+        #downloadsPanel,
+        #downloadsPanel-mainView,
+        .download-state,
+        .downloadButton {
+          border-radius: 0 !important;
+        }
+
         #nav-bar {
-          max-height: 28px !important;
-          min-height: 24px !important;
+          --toolbarbutton-inner-padding: 6px !important;
         }
 
-        /* Shrink address bar text to match compact layout */
-        #urlbar-input-container {
-          font-size: 11px !important;
-          padding-block: 0px !important;
+        #TabsToolbar {
+          --toolbarbutton-inner-padding: 6px !important;
         }
 
-        /* Ensure toolbar buttons compress perfectly */
-        .toolbarbutton-1 {
-          padding: 0px 2px !important;
-          margin: 0px !important;
+        .tabbrowser-tab {
+          border-left: 1px solid color-mix(
+            in srgb,
+            currentColor 15%,
+            transparent
+          ) !important;
+        }
+      '';
+
+      # Styles webpage content cleanly without breaks
+      userContent = ''
+        /* Target standard typography elements to ensure smooth fallback loading */
+        html, body, p, div, span, a, input, button, textarea, select, h1, h2, h3, h4, h5, h6 {
+          font-family: "JetBrainsMono Nerd Font", monospace !important;
         }
 
-        /* Scale down the font inside the sidebar */
-        #sidebar, .sidebar-placesTree {
-          font-size: 11px !important;
-        }
-
-        #vertical-tabs #tabbrowser-arrowscrollbox-periphery {
-          display: flex !important;
-          justify-content: center !important;
-          align-items: center !important;
-          width: 100% !important;
-        }
-
-        #vertical-tabs-newtab-button {
-          width: 24px !important;
-          height: 24px !important;
-          padding: 0px !important;
-          margin: 6px auto 0px auto !important;
-          box-sizing: border-box !important;
-        }
-
-        #vertical-tabs-newtab-button > .toolbarbutton-icon {
-          display: block !important;
-          width: 14px !important;
-          height: 14px !important;
-          margin: 0px !important;
-        }
-
-        /* 4. Tab Container & Cleanup */
-        .tab-background {
-          margin-block: 0px !important;
+        /* Enforce sharp square borders across web views */
+        *,
+        *::before,
+        *::after {
+          border-radius: 0 !important;
         }
       '';
     };
