@@ -39,19 +39,20 @@ in
     enable = true;
 
     userSettings = {
-      theme = "Night Owl";
+      theme = "Ayu Dark";
       vim_mode = true;
-
       relative_line_numbers = "enabled";
 
       buffer_font_family = "JetBrainsMono Nerd Font";
-      buffer_font_size = 13;
-      ui_font_size = 14;
+      buffer_font_size = 15;
+      ui_font_size = 17;
+      
       autosave = {
         after_delay = {
           milliseconds = 1000;
         };
       };
+      
       tool_permissions = {
         tools = {
           terminal = {
@@ -60,7 +61,10 @@ in
         };
       };
 
-      telemetry = { metrics = false; };
+      telemetry = {
+        metrics = false;
+        diagnostics = false;
+      };
     };
 
     extensions = [
