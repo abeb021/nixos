@@ -38,6 +38,18 @@ in
   programs.zed-editor = {
     enable = true;
 
+    userKeymaps = [
+      {
+        context = "Editor && VimControl && !VimWaiting && !menu";
+        bindings = {
+          "H" = "pane::ActivatePreviousItem";
+          "L" = "pane::ActivateNextItem";
+
+          "space d" = "pane::CloseActiveItem";
+        };
+      }
+    ];
+
     userSettings = {
       theme = "Ayu Dark";
       vim_mode = true;
