@@ -58,7 +58,7 @@
         .menuitem,
         .subviewbutton {
           border-radius: 0 !important;
-        } Menupopup > menu,
+        } menupopup > menu,
         menupopup > menuitem {
           border-radius: 0 !important;
         }

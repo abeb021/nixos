@@ -15,6 +15,7 @@
     ./tanjun.nix
     ./fetch.nix
     ./zoom.nix
+    ./dsh.nix
     ../../scripts/scripts.nix
   ];
 }

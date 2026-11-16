@@ -15,6 +15,10 @@
       url = "github:areofyl/fetch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dsh-nix = {
+      url = "github:Samuka007/dsh-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

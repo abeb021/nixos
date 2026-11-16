@@ -120,6 +120,5 @@
     # VPN client. zapret's old unit executed /opt/zapret on the Arch disk;
     # the package is here, the service is not started.
     amnezia-vpn
-    zapret
   ];
 }
