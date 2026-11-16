@@ -21,7 +21,7 @@
       "--dpi-desync-fake-tls=0x0F0F0F0F"
       "--dpi-desync-fooling=badseq"
       "--dpi-desync-autottl=2:2-12"
-      "--ipset=${./lists/ipset-service.txt}"
+      "--ipset=${../../lists/ipset-service.txt}"
       # update with:
       # curl -o ~/nixos/lists/ipset-service.txt https://raw.githubusercontent.com/Flowseal/zapret-discord-youtube/refs/heads/main/.service/ipset-service.txt
     ];

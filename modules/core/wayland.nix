@@ -56,7 +56,14 @@
   };
 
   environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    GDK_BACKEND = "wayland,x11,*";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
     # Must be a list — xdg/icons.nix also defines this option as a list.
@@ -64,6 +71,7 @@
     HYPRCURSOR_THEME = "rose-pine-hyprcursor";
     HYPRCURSOR_SIZE = "24";
   };
+
   environment.pathsToLink = [ "/share/icons" ];
 
   # Hyprland only searches ~/.local/share/icons for hyprcursor themes.
