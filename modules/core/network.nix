@@ -11,6 +11,7 @@
     whitelist = [
       "youtube.com"
       "googlevideo.com"
+      "google.com"
       "discord.com"
       "discordapp.com"
     ];

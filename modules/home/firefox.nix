@@ -12,7 +12,7 @@
       };
 
       # Styles the browser UI shell
-      userChrome = ''
+     userChrome = ''
         :root {
           --ui-font: "JetBrainsMono Nerd Font", monospace !important;
         }
@@ -21,11 +21,12 @@
           font-family: var(--ui-font) !important;
         }
 
+        /*
         *,
         *::before,
         *::after {
           border-radius: 0 !important;
-        }
+        }*/
 
         .tabbrowser-tab,
         .tab-background,
@@ -107,19 +108,17 @@
       '';
 
       # Styles webpage content cleanly without breaks
-      userContent = ''
-        /* Target standard typography elements to ensure smooth fallback loading */
+      /*userContent = ''
         html, body, p, div, span, a, input, button, textarea, select, h1, h2, h3, h4, h5, h6 {
           font-family: "JetBrainsMono Nerd Font", monospace !important;
         }
 
-        /* Enforce sharp square borders across web views */
         *,
         *::before,
         *::after {
           border-radius: 0 !important;
         }
-      '';
+      '';*/
     };
   };
 }
