@@ -1,5 +1,5 @@
-# Live session is Hyprland plus Tanjun (Quickshell).
-# Tanjun itself stays the git checkout under ~/.local/share/tanjun.
+# Daily session is niri plus Tanjun (Quickshell); Hyprland stays available
+# as a fallback. Tanjun itself stays the git checkout under ~/.local/share/tanjun.
 # The old waybar / wofi / swaync rice in ~/.config is not this session.
 { pkgs, config, username, ... }:
 {
@@ -7,7 +7,8 @@
   services.xserver.enable = true;
 
   services.displayManager = {
-    defaultSession = "hyprland-uwsm";
+    # Matches programs.tanjun.compositor = "niri" and the session in use.
+    defaultSession = "niri";
     sddm = {
       enable = true;
       wayland.enable = false;
@@ -111,5 +112,11 @@
     mpv
     libinput-gestures
     polkit_gnome
+
+    # niri spawns xwayland-satellite from PATH; without it X11 apps (Zoom and
+    # friends) refuse to start and niri logs "disabling integration".
+    xwayland-satellite
+    # Tanjun's clipboard/Bluetooth scripts call notify-send.
+    libnotify
   ];
 }

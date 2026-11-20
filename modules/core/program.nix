@@ -50,7 +50,6 @@
     # dev
     gh
     lazygit
-    neovim
     go
     nodejs
     # Pillow is what Tanjun uses to sample wallpaper colors.
@@ -63,7 +62,6 @@
     fd
     fzf
     jq
-    unzip
     wget
     openssh
     nano
