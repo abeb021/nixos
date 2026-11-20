@@ -6,8 +6,8 @@
 
   programs.tanjun = {
     enable = true;
-    compositor = "hyprland";
-  # checkout = inputs.tanjun.outPath;
+    compositor = "niri";
+    #checkout = inputs.tanjun.outPath;
     checkout = "/home/abeb-nix/Programming/Tanjun-shell";
   };
 }
