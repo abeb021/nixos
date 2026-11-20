@@ -39,30 +39,30 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gnome
     ];
     config = {
-      common.default = [
-        "hyprland"
-        "gtk"
-      ];
-      hyprland.default = [
-        "hyprland"
-        "gtk"
-      ];
-      hyprland."org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
-      hyprland."org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
-      hyprland."org.freedesktop.impl.portal.Request" = [ "hyprland" ];
+      common.default = [ "gtk" ];
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.Request" = [ "hyprland" ];
+      };
+      niri = {
+        default = [ "gnome" "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+      };
     };
   };
 
+
   environment.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    GDK_BACKEND = "wayland,x11,*";
-    SDL_VIDEODRIVER = "wayland";
-    CLUTTER_BACKEND = "wayland";
 
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
